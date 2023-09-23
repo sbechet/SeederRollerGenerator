@@ -1,4 +1,4 @@
-////////// Open Jang Seeder Roller Generator V1.0////////////////////
+////////// Open Jang Seeder Roller Generator V1.1////////////////////
 /////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////
 //
@@ -6,7 +6,7 @@
 // Hit F5 key or the preview button to check effect as you go
 // Hit Render or F6 key when you are happy, and then "Export as STL"
 // The .stl file is a 3D printable format
-// Reccommended printer settings: 
+// Reccommended printer settings:
 // 0.2mm layer height, 3 shells, 30%-50% infill
 
 Identifier = "ABC123";
@@ -28,14 +28,14 @@ WellDepth = 3;
 WellsPerRow = 12;
 // Number of seed wells per row per revolution.
 
-RollerRows = 2; 
+RollerRows = 2;
 // Enter 1 for a single central row, or 2 for two rows.
 
 RowSpacing = 8;
-// Distance from center of the roller to centers of rows of wells 
+// Distance from center of the roller to centers of rows of wells
 // as a fraction of the height of the roller.
 // Entering a value of 4 equates to 1/4 the height of the roller
-// Recommend values between 4 and 8, using higher values when 
+// Recommend values between 4 and 8, using higher values when
 // using large wells and offset rows, see below.
 
 RowsOffset = "true";
@@ -45,30 +45,30 @@ RowsOffset = "true";
 /////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////
 //
-// Created by Ash Watson and Makeshop for Farmhack and Science 
+// Created by Ash Watson and Makeshop for Farmhack and Science
 // Gallery Dublin.
 //
 // This tool is intended to be used for the creation of custom parts
 // for the Jang JP-1 or other compatible seeders.
-// It is NOT intended as a replacement for the standard range of 
+// It is NOT intended as a replacement for the standard range of
 // Jang Seeder rollers.
 //
 // Some trial and error will be required to get the parameters just
-// right for your specific application. 
-// 
+// right for your specific application.
+//
 // Note that 3D printed parts may be more susceptible to wear
 //
-// This work is licensed under a Creative Commons Attribution 
+// This work is licensed under a Creative Commons Attribution
 // 3.0 Unported (CC-by-S.A.) licence.
 // Links:
 // http://creativecommons.org/licenses/by/3.0/legalcode
 // http://creativecommons.org/licenses/by/3.0/
-// 
+//
 // This is a remix of the custom printable Jang Seeder Rollers
 // ceated by Farmhack and Thingiverse user, jellenbogen.
 // Links:
 // http://farmhack.org/tools/custom-3d-printable-jang-seeder-rollers
-// http://www.thingiverse.com/thing:771742 
+// http://www.thingiverse.com/thing:771742
 //
 /////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////
@@ -112,8 +112,8 @@ difference()
             if (RowsOffset == "true")
             {
                 // rotate upper row of wells
-                rotate([0,0,OffAngle]) 
-                translate([0,0,OffHeight]) 
+                rotate([0,0,OffAngle])
+                translate([0,0,OffHeight])
                 wells();
             }
             else if (RowsOffset == "false")
@@ -140,7 +140,7 @@ module body()
     // Shaft Cutout
     cylinder(d=ShaftDiameter,h=RollerHeight+1,center=true,$fn=180);
     }
-    
+
 }
 
 module id ()
@@ -165,7 +165,7 @@ module wells ()
             {
                 union ()
                 {
-                    sphere (d=WellDiameter,center=true,$fn=18);
+                    sphere (d=WellDiameter,$fn=18);
                     translate([-15,0,0])
                     rotate([0,-90,0])
                     cylinder(d=WellDiameter,h=30,center=true,$fn=18);
@@ -177,13 +177,13 @@ module wells ()
                 {
                     union ()
                     {
-                        sphere (d=WellDiameter,center=true,$fn=18);
+                        sphere (d=WellDiameter,$fn=18);
                         translate([-15,0,0])
                         rotate([0,-90,0])
                         cylinder(d=WellDiameter,h=30,center=true,$fn=18);
                     }
                     translate ([-15,-WellDiameter/4,0])
-                    cube ([30+WellDiameter,WellDiameter/2,WellDiameter+1], center=true); 
+                    cube ([30+WellDiameter,WellDiameter/2,WellDiameter+1], center=true);
                 }
             }
         if (WellShape == "cross")
@@ -197,16 +197,16 @@ module wells ()
                     {
                         cylinder (d=CrossDiameter,h=CrossDiameter*2,center=true,$fn=18);
                         translate ([0,0,-CrossDiameter])
-                        sphere (d=CrossDiameter,center=true,$fn=18);
-                        translate ([0,0,CrossDiameter]) 
-                        sphere (d=CrossDiameter,center=true,$fn=18);
-                        translate([-15,0,CrossDiameter]) 
-                        rotate([0,-90,0]) 
+                        sphere (d=CrossDiameter,$fn=18);
+                        translate ([0,0,CrossDiameter])
+                        sphere (d=CrossDiameter,$fn=18);
+                        translate([-15,0,CrossDiameter])
+                        rotate([0,-90,0])
                         cylinder (d=CrossDiameter, h=30, center=true,$fn=18);
-                        translate([-15,0,-CrossDiameter]) 
-                        rotate([0,-90,0]) 
+                        translate([-15,0,-CrossDiameter])
+                        rotate([0,-90,0])
                         cylinder (d=CrossDiameter, h=30, center=true,$fn=18);
-                    }   
+                    }
                 }
             }
         }
